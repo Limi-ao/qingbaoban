@@ -1,0 +1,38 @@
+<template>
+  <div class="container">
+    <iframe src="/static/pages/index.html" frameborder="0" width="100%" style="min-height:874px"></iframe>
+  </div>
+</template>
+
+<script>
+
+  export default {
+    data() {
+      return {
+      }
+    },
+    mounted(){
+      window.selectMap = this.selectMap
+    },
+    methods: {
+      
+      selectMap(name){
+        let _this = this;
+        switch(name){
+          case 'shuidao':
+            _this.$router.push('/suidao');
+            break;
+          case 'gsdq':
+            _this.$router.push('/guanshan');
+            break;
+          default:
+            _this.$router.push('/xiushan')
+        }
+      }     
+    },
+  }
+</script>
+
+<style scoped>
+  
+</style>

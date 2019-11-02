@@ -1,0 +1,127 @@
+<template>
+    <div>
+        <el-row>
+            <el-col :span="4" style="padding:0 20px;min-width:200px;background:#ffffff">
+                    <h3 style="text-align:center;margin:20px 0;">摄像机资源列表</h3>
+                    <el-input placeholder="输入关键字进行过滤" v-model="filterText"></el-input>
+                    <el-tree
+                        style="height:450px;"
+                        :data="cameraLists"
+                        :props="defaultProps"
+                        default-expand-all
+                        :filter-node-method="filterNode">
+                    </el-tree>
+                    <div style="background:#ffffff;border:2px solid #fcfcfc">
+                        <h3 style="text-align:center">云台控制</h3> 
+                    <el-row>
+                        <el-col :span="14" style="min-width:150px;text-align:center">
+                            <el-row style="margin-top:10px">
+                                <el-button type="primary" circle icon="el-icon-top-left"></el-button>
+                                <el-button type="primary" circle icon="el-icon-top"></el-button>
+                                <el-button type="primary" circle icon="el-icon-top-right"></el-button>
+                            </el-row>
+                            <el-row  style="margin-top:10px">
+                                <el-button type="primary" circle icon="el-icon-back"></el-button>
+                                <el-button type="primary" circle icon="el-icon-video-pause"></el-button>
+                                <el-button type="primary" circle icon="el-icon-right"></el-button>
+                            </el-row>
+                            <el-row style="margin-top:10px">
+                                <el-button type="primary" circle  icon="el-icon-bottom-left"></el-button>
+                                <el-button type="primary" circle icon="el-icon-bottom"></el-button>
+                                <el-button type="primary" circle icon="el-icon-bottom-right"></el-button>
+                            </el-row>
+                        </el-col>
+                        <el-col :span="10" style="text-align:center">
+                            <el-button type="primary" style="margin-top:5px" size="small" plain>预置点1</el-button><br/>
+                            <el-button type="primary" style="margin-top:5px" size="small" plain>预置点2</el-button><br/>
+                            <el-button type="primary" style="margin-top:5px" size="small" plain>预置点3</el-button><br/>
+                            <el-button type="primary" style="margin-top:5px" size="small" plain>预置点4</el-button>
+                        </el-col>
+                    </el-row>
+                    <el-row style="margin-top:10px;min-width:200px;">
+                        <span class="btnSpec">光圈</span>
+                        <el-button type="primary" class="btnSpec" size="small" circle  icon="el-icon-plus"></el-button>
+                        <el-button type="primary" class="btnSpec" size="small" circle  icon="el-icon-minus"></el-button><br/>
+                        <span class="btnSpec">焦点</span>
+                        <el-button type="primary" class="btnSpec" size="small" circle  icon="el-icon-plus"></el-button>
+                        <el-button type="primary" class="btnSpec" size="small" circle  icon="el-icon-minus"></el-button><br/>
+                        <span class="btnSpec">焦距</span>
+                        <el-button type="primary" class="btnSpec" size="small" circle  icon="el-icon-plus"></el-button>
+                        <el-button type="primary" class="btnSpec" size="small" circle  icon="el-icon-minus"></el-button>
+                    </el-row>
+                    </div>
+                    
+           </el-col>
+            <el-col :span="20">
+                <el-row>
+                    <el-col :span="12">
+                        <i class="el-icon-refresh" title="刷新" style="font-size:20px"></i>
+                        <i class="el-icon-camera-solid" title="抓拍" style="font-size:20px"></i>
+                        <svg-icon icon-class="screen-1" title="停止" style="margin-left:10px;cursor:pointer;font-size:20px"></svg-icon>
+                        <i class="el-icon-refresh" style="font-size:20px"></i>
+                        <i class="el-icon-refresh" style="font-size:20px"></i>
+                    </el-col>
+                    <el-col :span="12" style="text-align:right;padding-right:20px;font-size:20px;margin-top:10px;">
+                        <svg-icon icon-class="screen-1" @click="changeNum(1)" title="单屏" style="cursor:pointer;margin-right:10px;"></svg-icon>
+                        <svg-icon icon-class="screen-4" @click="changeNum(2)" title="四屏" style="cursor:pointer;margin-right:10px;"></svg-icon>
+                        <svg-icon icon-class="screen-9" @click="changeNum(3)" title="九屏" style="cursor:pointer;margin-right:10px;"></svg-icon>
+                        <svg-icon icon-class="screen-16" @click="changeNum(4)" title="十六屏" style="cursor:pointer;margin-right:10px"></svg-icon>
+                        <svg-icon icon-class="fullScreen" @click="changeFullScreen" title="全屏" style="cursor:pointer;margin-right:10px"></svg-icon>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <div v-if="$route.path ==='/video'" id="divPlugin" class="plugin" style="width:1000px !important;height:600px !important"></div>
+                </el-row>
+            </el-col>
+        </el-row>
+    </div>
+</template>
+<script>
+    export default {
+        name:'Video',
+        data(){
+            return {
+                 filterText: '',
+                defaultProps:{
+                    children:'children',
+                    label:'label'
+                },
+                cameraLists:[
+                    {label:'官山大桥',children:[{label:'k1+100',state:"0"},{label:'k1+200',state:"0"},{label:'k1+300',state:"1"}]},
+                    {label:'炮台山隧道',children:[{label:'k2+100',state:"1"},{label:'k2+200',state:"0"},{label:'k2+300',state:"0"}]},
+                    {label:'秀山大桥',children:[{label:'k3+100',state:"0"},{label:'k3+200',state:"1"},{label:'k3+300',state:"0"}]}
+                ]
+            }
+        },
+        mounted(){
+            initDahua()
+        },
+        watch:{
+            
+        },
+        methods:{
+            filterNode(){
+                
+            },
+            changeNum(num){
+                window.changeWndNum(num)
+            },
+            changeFullScreen(){
+                // clickFullScreen()
+            }
+        }
+    }
+</script>
+
+<style scoped>
+.btnSpec{
+    margin-left:20px;
+    margin-top:10px;
+}
+i{
+    font-size: 24px;
+    margin-left:10px;
+    margin-top:10px;
+    cursor: pointer
+}
+</style>
