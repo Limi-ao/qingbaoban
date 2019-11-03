@@ -4,7 +4,7 @@
         <el-row>
             <el-col :span="23">
                <div class="grid-content bg-purple-dark" style="height:180px;">
-                  <div class="bji-top">{{textarea}}</div>
+                  <p class="bji-top" :style="{color:color,width:width}">{{textarea}}</p>
                   <ul class="bji-top-i">
                     <li style="margin-right:10px;"> <i class="el-icon-edit-outline" style="color:#09f;margin-right:6px;"></i>新建信息</li>
                     <li><i class="el-icon-tickets" style="color:#09f;margin-right:4px;"></i>保存信息</li>
@@ -119,6 +119,7 @@ import axios from 'axios'
     export default {
         data(){
           return{
+            color:'#fff',
              options:[],
              value:'',
              checked: true,

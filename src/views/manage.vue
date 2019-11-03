@@ -26,9 +26,10 @@
                         <el-button type="primary" v-on:click="getdata" style=" height: 28px; line-height:0;">查询</el-button>
                     </el-form-item>
            </el-form>
-          
-            <i class="el-icon-close" style="color:#09f; margin-left:740px;" @click="handleDel">删除</i>
+           <p style="textAlign:right">
+            <i class="el-icon-close" style="color:#09f;marginRight:10px" @click="handleDel">删除</i>
             <i class="el-icon-delete" style="color:#09f;" @click="handleXg">类别修改</i>
+           </p>
           <el-table :data="leixin"   border  highlight-current-row style="width:100%; margin-bottom:20px; margin-top:5px;">
                     <el-table-column type="selection" width="55">
                     </el-table-column>
@@ -50,7 +51,7 @@
         <!--分页-->
         <div class="block">
             <span class="demonstration">显示第{{currentPage1}}到第{{size}}条记录,总共{{total}}条记录</span>
-            <el-pagination layout="total, prev, pager, next" style="margin-left:670px;margin-top:-25px;"
+            <el-pagination layout="total, prev, pager, next" style="marginRight:10px;margin-top:10px;float:right"
             v-show="pge"
             :total="total"
             :current-page.sync="currentPage1"
@@ -58,11 +59,13 @@
             </el-pagination>
         </div>
 
-       <span class="table-gbottom">信息类别管理</span>
-            <i class="el-icon-close" style="color:#09f; margin-left:535px;" @click="handleDel">删除</i>
+       <h4 class="table-gbottom">信息类别管理</h4>
+          <p style="textAlign:right">
+            <i class="el-icon-close" style="color:#09f;" @click="handleDel">删除</i>
             <i class="el-icon-edit-outline" style="color:#09f;" @click="handleXg">类别修改</i>
             <i class="el-icon-plus" style="color:#09f;" @click="innerVisible = true">新增</i>
-            <i class="el-icon-refresh" style="color:#09f;" @click="handleref">刷新</i>
+            <i class="el-icon-refresh" style="color:#09f;marginRight:10px" @click="handleref">刷新</i>
+          </p>
        <el-table :data="leibie" border  highlight-current-row style="width:100%;margin-top:5px;margin-bottom:15px;">
                     <el-table-column type="selection" width="55">
                     </el-table-column>
@@ -76,7 +79,7 @@
        <!--分页-->
         <div class="block">
             <span class="demonstration">显示第{{currentPage1}}到第{{size}}条记录</span>
-            <el-pagination layout="total, prev, pager, next" style="margin-left:670px;margin-top:-25px;"
+            <el-pagination layout="total, prev, pager, next" style="marginRight:10px;margin-top:10px;float:right"
             v-show="pge"
             :total="total"
             :current-page.sync="currentPage1"
@@ -178,6 +181,7 @@ import axios from 'axios'
 
   .block{
       margin-bottom:15px;
+      overflow: hidden;
   }
   .dialog-content .el-dialog__body{
       margin-left:20px;
